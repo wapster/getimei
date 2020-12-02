@@ -68,10 +68,10 @@ class TacController extends Controller
 	
 
 
-	public function actionSearch()
+	public function actionEdit($tac)
 	{
-		$tac = Tac::find()->asArray()->where(['like', 'tac', '86463804'])->all();
-		return $this->render('search', compact('tac'));
+		$tac = '86463804';
+		return $this->render('edit', compact('tac'));
 	}
 
 }

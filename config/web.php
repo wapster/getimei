@@ -50,7 +50,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            	// '' => 'tac/index',                                
+                '' => 'tac/index',
+                // 'tac/edit?tac=:\w+' => '/tac/edit/:\w+',
 			    '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
