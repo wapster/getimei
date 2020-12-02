@@ -62,6 +62,13 @@
             ]
         }
     },
+
+    "autoload": {
+        "files": [
+            "functions.php"
+        ]
+    },
+
     "repositories": [
         {
             "type": "composer",
