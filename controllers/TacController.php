@@ -68,10 +68,19 @@ class TacController extends Controller
 	
 
 
-	public function actionEdit($tac)
+	public function actionEdit($id)
 	{
-		$tac = '86463804';
-		return $this->render('edit', compact('tac'));
+		// $model = Tac::find()->asArray()->where( ['id' => $id] )->one();
+		$model = Tac::findOne($id);
+		if ( $model->load(Yii::$app->request->post()) ) { 
+			if ($model->save()) {
+				Yii::$app->session->setFlash('success', 'Данные успешно обновлены');
+				return $this->refresh();
+			} else {
+				Yii::$app->session->setFlash('error', 'Ошибка. Покажите ее адмнистратору.');
+			}
+		}
+		return $this->render('edit', compact('model'));
 	}
 
 }
