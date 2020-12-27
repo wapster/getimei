@@ -23,7 +23,7 @@ class Tac extends ActiveRecord
 			'tac' => 'TAC',
 			'model_xinit' => 'Модель телефона',
 			'sim' => 'Кол-во SIM карт',
-			'info_omsk' => 'Дополнительная информация',
+			'info_omsk' => 'Доп. инф-ция (как найти 2й слот)',
 			'model_omsk' => 'Данные из Омской базы',
 			'standart' => 'Поддержка стандартов связи'
 		];
@@ -33,12 +33,11 @@ class Tac extends ActiveRecord
 	{
 		return [
 			[ ['tac', 'model_xinit', 'model_omsk', 'info_omsk', 'sim', 'standart'], 'safe' ],
-
-			// [ 'model_xinit', 'model_omsk', 'info_omsk', 'autocomplete' => 'off' ],
 			
-			// [ ['tac', 'model_xinit'], 'required' ],
+			[ ['tac', 'model_xinit', 'info_omsk', 'sim', 'standart'], 'required' ],
 
 			[ 'tac', 'string', 'min' => 8, 'max' => 8 ],
+			[ 'sim', 'integer', 'min' => 1, 'max' => 4 ],
 			// [ 'tac', 'length' => [8, 8] ],
 		];
 	}
