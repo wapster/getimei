@@ -20,31 +20,22 @@ if (Yii::$app->session->hasFlash('error'))
 ?>
 
 <h1>Добавить IMEI</h1>
+<div style='width:50%'>
 <hr>
+<?php
+	$form = ActiveForm::begin([
+		'options' => ['autocomplete' => 'off']
+		]);
 
-<?php $form = ActiveForm::begin() ?>
-<?= $form->field($model, 'tac', [
-	'inputOptions' => [
-		'type' => 'text',
-		'autofocus' => 'autofocus',
-		// 'required' => 'required',
-		'style'=>'width:120px',
-		// 'value' => 87654321,
-	]
-	])->textInput()->label("TAC:")
+		
+	echo $form->field($model, 'tac');
+	echo $form->field($model, 'model_xinit'); 
+	echo $form->field($model, 'info_omsk');
+	echo $form->field($model, 'sim');
+	echo $form->field($model, 'standart');
 ?>
-
-
-<?= $form->field($model, 'model_xinit', [
-	'inputOptions' => [
-		'type' => 'text',
-		'style'=>'width:120px',
-	]
-	])->textInput()->label("Название модели:")
-?>
-
-
-
 <hr>
+</div>
+
 <?= Html::submitButton('Добавить', ['class' => 'btn btn-success']) ?>
 <?php ActiveForm::end() ?>

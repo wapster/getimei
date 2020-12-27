@@ -9,18 +9,12 @@ $this->title = 'GetIMEI';
 
 <h1>Поиск</h1>
 <hr>
-
-<?php $form = ActiveForm::begin() ?>
-<?= $form->field($model, 'tac', [
-	'inputOptions' => [
-		'type' => 'number',
-		'autofocus' => 'autofocus',
-		'required' => 'required',
-		'style'=>'width:120px',
-		'value' => 86463804,
-	]
-	])->textInput()->label("TAC:")
+<div style='width:20%'>
+<?php 
+	$form = ActiveForm::begin(['options' => ['autocomplete' => 'off']]);
+	echo $form->field( $model, 'tac');
 ?>
+</div>
 <hr>
 <?= Html::submitButton('Поиск', ['class' => 'btn btn-success']) ?>
 <?php ActiveForm::end() ?>
