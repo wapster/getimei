@@ -39,6 +39,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Добавить', 'url' => ['/tac/add']],
+            ['label' => 'Найти несколько', 'url' => ['/tac/mass-check']],
             // ['label' => 'Home', 'url' => ['/site/index']],
             // ['label' => 'About', 'url' => ['/site/about']],
             // ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -70,7 +72,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; R Inc. <?= date('Y') ?></p>
+        <p class="pull-left">&copy; R108 Inc., <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

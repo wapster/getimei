@@ -15,7 +15,7 @@ class TacController extends Controller
 
 		if ( $model->load(Yii::$app->request->post()) ) 
 		{
-			if ($model->validate()) {
+			if ($model->validate(['tac'])) {
 				$user_query = $model->tac;
 				$result = $model->find()->asArray()->where(['like', 'tac', $user_query])->all();
 				
@@ -24,7 +24,7 @@ class TacController extends Controller
 					return $this->render('result', compact('result'));
 				}
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка. Покажите ее адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка поиска. Сообщите адмнистратору.');
 				exit;
 			}
 		}
@@ -32,6 +32,12 @@ class TacController extends Controller
 		return $this->render('index', compact('model'));
 	}
 
+
+	/* Поиск сразу нескольких IMEI */
+	public function actionMassCheck()
+	{
+		return $this->render('masscheck', ['dsfjsdkfj' => '33333333']);
+	}
 
 
 
@@ -46,7 +52,7 @@ class TacController extends Controller
 				Yii::$app->session->setFlash('success', 'Данные успешно добавлены');
 				return $this->refresh();
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка. Покажите ее адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка. Сообщите адмнистратору.');
 			}
 		}
 		
@@ -58,7 +64,8 @@ class TacController extends Controller
     {
         if (isset($id)) {
             if (Tac::deleteAll(['in', 'id', $id])) {
-                $this->redirect(['index']);
+				$this->redirect(['index']);
+				// return $this->refresh();
             }
         } else {
             $this->redirect(['index']);
@@ -77,7 +84,7 @@ class TacController extends Controller
 				Yii::$app->session->setFlash('success', 'Данные успешно обновлены');
 				return $this->refresh();
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка. Покажите ее адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка. Сообщите адмнистратору.');
 			}
 		}
 		return $this->render('edit', compact('model'));
