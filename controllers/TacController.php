@@ -36,7 +36,46 @@ class TacController extends Controller
 	/* Поиск сразу нескольких IMEI */
 	public function actionMassCheck()
 	{
-		return $this->render('masscheck', ['dsfjsdkfj' => '33333333']);
+		$model = new Tac();
+
+		if ( $model->load(Yii::$app->request->post()) ) 
+		{
+			if ($model->validate(['imeis'])) {
+
+				$imeis = explode(PHP_EOL, $model->imeis);
+
+				// формируем массив с 8-значными значениями IMEI
+				$false_imeis = [];
+				$true_imeis  = [];
+				
+				foreach ($imeis as $imei) {
+
+					$imei = str_replace(" ", '', $imei);
+
+					// проверка длины строки
+					$len = strlen($imei);
+					
+					if ($len < 8) {
+						$false_imeis[] = trim($imei);
+					}
+					
+					if ($len >= 8) {
+						$tac = substr($imei, 0, 8);
+						$true_imeis[] = $tac;
+					}
+				}
+				$false_imeis = array_diff($false_imeis, ['']);
+				$result['false_imeis'] = $false_imeis;
+				$result['true_imeis'] = $true_imeis;
+
+				return $this->render('result-mass-check', compact('result'));
+
+			} else {
+				Yii::$app->session->setFlash('error', 'Ошибка массовой проверки IMEI.<br> Сообщите адмнистратору.');
+				exit;
+			}
+		}
+		return $this->render('masscheck', compact('model'));
 	}
 
 

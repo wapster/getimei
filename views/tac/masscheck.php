@@ -5,6 +5,8 @@ use yii\helpers\Html;
 
 $this->title = 'Найти несколько IMEI';
 
+debug($model->imeis);
+
 
 if (Yii::$app->session->hasFlash('success'))
 {
@@ -20,10 +22,18 @@ if (Yii::$app->session->hasFlash('error'))
 ?>
 
 <h1>Найти несколько IMEI</h1>
-<div style='width:50%'>
+
+<div style='width:33%' class='mass_check'>
 <hr>
+
 <?php
+	$form = ActiveForm::begin(['options' => ['autocomplete' => 'off']]);
+	echo $form->field( $model, 'imeis')->textarea(['rows' => 15]);
 	
 ?>
 <hr>
+
+<?= Html::submitButton('Поиск', ['class' => 'btn btn-success']) ?>
+<?php ActiveForm::end() ?>
+
 </div>
