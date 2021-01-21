@@ -39,8 +39,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Добавить', 'url' => ['/tac/add']],
+            ['label' => 'Поиск: IMEI', 'url' => ['/tac/index']],
+            ['label' => 'Поиск: модель', 'url' => ['/tac/phone-model']],
             ['label' => 'Найти несколько', 'url' => ['/tac/mass-check']],
+            ['label' => 'Добавить', 'url' => ['/tac/add']],
             // ['label' => 'Home', 'url' => ['/site/index']],
             // ['label' => 'About', 'url' => ['/site/about']],
             // ['label' => 'Contact', 'url' => ['/site/contact']],

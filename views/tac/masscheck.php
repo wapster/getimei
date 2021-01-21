@@ -5,9 +5,6 @@ use yii\helpers\Html;
 
 $this->title = 'Найти несколько IMEI';
 
-debug($model->imeis);
-
-
 if (Yii::$app->session->hasFlash('success'))
 {
 	Yii::$app->session->getFlash('success');

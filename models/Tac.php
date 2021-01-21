@@ -8,9 +8,8 @@ use yii\db\ActiveRecord;
 class Tac extends ActiveRecord
 {
 
-	// public $tac;
-	// public $model_xinit;
 	public $imeis;
+	
 
 	public static function tableName()
 	{
@@ -29,6 +28,7 @@ class Tac extends ActiveRecord
 			'standart' => 'Поддержка стандартов связи',
 
 			'imeis' => '8-15 цифр, каждый с новой строки',
+			// 'phone' => 'Модель телефона',
 		];
 	}
 

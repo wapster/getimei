@@ -33,6 +33,30 @@ class TacController extends Controller
 	}
 
 
+
+	public function actionPhoneModel()
+	{
+		$model = new Tac();
+
+		if ( $model->load(Yii::$app->request->post()) ) 
+		{
+			if ($model->validate(['model_xinit'])) {
+				$user_query = $model->model_xinit;
+				$result = $model->find()->asArray()->where(['like', 'model_xinit', $user_query])->all();
+				
+				if (is_array($result)) {
+					Yii::$app->session->setFlash('success', 'Запрос: ' . $model->model_xinit);
+					return $this->render('result-phone-model', compact('result'));
+				}
+			} else {
+				Yii::$app->session->setFlash('error', 'Ошибка поиска. Сообщите администратору.');
+				exit;
+			}
+		}
+
+		return $this->render('phone-model', compact('model'));
+	}
+
 	/* Поиск сразу нескольких IMEI */
 	public function actionMassCheck()
 	{
@@ -91,7 +115,7 @@ class TacController extends Controller
 				Yii::$app->session->setFlash('success', 'Данные успешно добавлены');
 				return $this->refresh();
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка. Сообщите адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка. Сообщите администратору.');
 			}
 		}
 		
