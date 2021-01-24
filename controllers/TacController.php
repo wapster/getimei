@@ -24,7 +24,7 @@ class TacController extends Controller
 					return $this->render('result', compact('result'));
 				}
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка поиска. Сообщите адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка поиска. Сообщите администратору.');
 				exit;
 			}
 		}
@@ -92,10 +92,13 @@ class TacController extends Controller
 				$result['false_imeis'] = $false_imeis;
 				$result['true_imeis'] = $true_imeis;
 
+				// request to database
+				// запросы к БД
+
 				return $this->render('result-mass-check', compact('result'));
 
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка массовой проверки IMEI.<br> Сообщите адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка массовой проверки IMEI.<br> Сообщите администратору.');
 				exit;
 			}
 		}
@@ -147,7 +150,7 @@ class TacController extends Controller
 				Yii::$app->session->setFlash('success', 'Данные успешно обновлены');
 				return $this->refresh();
 			} else {
-				Yii::$app->session->setFlash('error', 'Ошибка. Сообщите адмнистратору.');
+				Yii::$app->session->setFlash('error', 'Ошибка. Сообщите администратору.');
 			}
 		}
 		return $this->render('edit', compact('model'));
