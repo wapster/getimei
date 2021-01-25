@@ -94,8 +94,18 @@ class TacController extends Controller
 
 				// request to database
 				// запросы к БД
+				$data['not_in_db'] = [];
+				$data['false_imeis'] = $result['false_imeis'];
+				foreach ($result['true_imeis'] as $tac) {
+					$request = $model->find()->asArray()->where(['like', 'tac', $tac])->all();
+					if (count($request) > 0) {
+						$data['true_result'][$tac] = $request;
+					} else {
+						$data['not_in_db'][] = $tac;
+					}
+				}
 
-				return $this->render('result-mass-check', compact('result'));
+				return $this->render('result-mass-check', compact('data'));
 
 			} else {
 				Yii::$app->session->setFlash('error', 'Ошибка массовой проверки IMEI.<br> Сообщите администратору.');
