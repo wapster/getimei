@@ -20,8 +20,14 @@ class TacController extends Controller
 				$result = $model->find()->asArray()->where(['like', 'tac', $user_query])->all();
 				
 				if (is_array($result)) {
-					Yii::$app->session->setFlash('success', 'TAC: ' . $model->tac);
-					return $this->render('result', compact('result'));
+					if (!empty($result)) {
+						Yii::$app->session->setFlash('success', 'TAC: ' . $model->tac);
+						return $this->render('result', compact('result'));
+					} else {
+						Yii::$app->session->setFlash('success', 'TAC: ' . $model->tac);
+						$result[] = $model->tac;
+						return $this->render('null-result', compact('result'));
+					}
 				}
 			} else {
 				Yii::$app->session->setFlash('error', 'Ошибка поиска. Сообщите администратору.');

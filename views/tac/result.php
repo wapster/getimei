@@ -17,6 +17,8 @@ if (Yii::$app->session->hasFlash('error'))
 
 <h4>Найдено: <?php echo count($result); ?></h4>
 
+
+
 <?php foreach ($result as $item => $data): ?>
 	<div class='result-hover'>
 		<div class='alert alert-secondary' role='alert'>
