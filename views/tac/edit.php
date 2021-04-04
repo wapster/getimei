@@ -35,8 +35,28 @@ if (Yii::$app->session->hasFlash('error'))
     echo $form->field($model, 'model_xinit');
     echo $form->field($model, 'model_omsk'); 
     echo $form->field($model, 'info_omsk');
-    echo $form->field($model, 'sim');
-    echo $form->field($model, 'standart');
+
+    echo $form->field($model, 'sim')->dropDownList([
+		'1' => '1',
+		'2' => '2',
+		'3' => '3'
+	],
+	[
+		'prompt' => 'укажите кол-во...',
+	]
+	
+	);
+
+    echo $form->field($model, 'standart')->dropDownList([
+		'2G' => '2G',
+		'3G' => '3G',
+		'4G' => '4G',
+		'5G' => '5G'
+		], 
+		['prompt'=>'выберите максимально поддерживаемый стандарт']
+	);
+
+
 ?>
 <hr>
 </div>
